@@ -3,13 +3,7 @@
 Sample application with database that showcases security features of Azure SQL DB (V12). 
 
 ## About this sample
-<!-- Delete the ones that don't apply -->
 - **Applies to:**  Azure SQL Database, Azure Web App Service, Azure Key Vault
-- **Key features:**  
-	+ Auditing and Threat Detection
-	+ Always Encrypted (with Azure Key Vault Integration)
-	+ Row Level Security
-	+ Dynamic Data Masking 
 - **Programming Language:** .NET C#, T-SQL
 - **Authors:** Daniel Rediske [daredis-msft]
 
