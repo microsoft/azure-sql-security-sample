@@ -26,6 +26,7 @@ Sample application with database that showcases security features of Azure SQL D
 
 ##Prerequisites
 + Azure Subscription with resource creation permissions
++ Subscription associated with an Azure Active Directory 
 + [Powershell with AzureRM and Azure Modules] (https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/)
 
 ##Estimated Cost of Deployed Resources
@@ -43,7 +44,7 @@ The following table is an estimation of the cost of deploying the Demo as of 5/9
 ###Generate Application ID and Secret
 In order to allow your client application to access and use the keys in your Azure Key Vault, we need to provision an application in Azure Active Directory. This will create a Client ID and Secret that your app will use to authenticate to the Azure Key Vault. To do this, head to the [Classic Azure Portal] (https://manage.windowsazure.com/) and log in.
 
-Select &ldquo;Active Directory&rdquo; in the left sidebar, choose the Active Directory you wish to use (or create a new one if it doesn&rsquo;t exist), then click &ldquo;Applications&rdquo;.
+Select &ldquo;Active Directory&rdquo; in the left sidebar, choose the Active Directory you wish to use (or create a new one if it doesn&rsquo;t exist), then click &ldquo;Applications&rdquo;. If you choose a directory other than your default, you will need to refer to the steps to change the directory associated with your account, [which can be found here] (http://rickrainey.com/windows-azure-how-tos/how-to-change-the-directory-associated-with-your-windows-azure-subscription/). 
 
 Add a new application by filling out the modal window that appears.
 
