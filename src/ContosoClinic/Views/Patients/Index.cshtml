@@ -23,7 +23,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div id="tips">
+<div id="tips" class="hide">
     <br/>
     Pre-req: Enable Auditing and Threat Detection from the <a target="_blank" href="https://portal.azure.com">Azure portal</a>
     <br />
@@ -105,8 +105,6 @@
 </table>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#tips').addClass("hide");
-
         $('#tips_toggle').click(function () {
             var $elem = $('#tips');
 

@@ -38,12 +38,13 @@
 		},
         "location": {
             "type": "string",
-            "allowedValues": [
-                "West US",
-                "East US",
-                "Central US",
-                "North Europe"
-            ],
+          "allowedValues": [
+            "West US",
+            "East US",
+            "Central US",
+            "North Europe",
+            "South India"
+          ],
             "defaultValue": "[resourceGroup().location]",
             "metadata": {
                 "description": "The Azure region in which these resources will be deployed."
