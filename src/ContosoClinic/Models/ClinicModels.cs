@@ -47,6 +47,7 @@ namespace ContosoClinic.Models
 
         [Column(TypeName = "date")]
         [Required]
+        [DataType(DataType.Date)]
         public System.DateTime BirthDate { get; set; }
 
         public virtual ICollection<Visit> Visits { get; set; }

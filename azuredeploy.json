@@ -42,7 +42,8 @@
                 "West US",
                 "East US",
                 "Central US",
-                "North Europe"
+                "North Europe",
+				"South India"
             ],
             "defaultValue": "[resourceGroup().location]",
             "metadata": {
