@@ -88,7 +88,7 @@ Note on Passwords: Please use only characters and numbers [a-z A-Z 0-9]. Because
 #### Set up and Test Auditing & Threat Detection 
 
 + Auditing and Threat Detection should have been turned on during deployment 
-+ You can verify this in the [Azure Portal](portal.azure.com) by viewing the Database Settings (under **Auditing & Threat Detection**)
++ You can verify this in the [Azure Portal](https://portal.azure.com) by viewing the Database Settings (under **Auditing & Threat Detection**)
 	- Auditing should be 'ON'
 	- Threat Detection should be 'ON'
 	- For shared accounts, unselect the **Email Service and Co-Administrators** box and place your own email address in the box. 
