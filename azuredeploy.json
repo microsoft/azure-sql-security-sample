@@ -173,12 +173,14 @@
 						"[concat('Microsoft.Sql/servers/', variables('defaultSqlServerName'), '/databases/',variables('defaultSqlDatabaseName'))]",
 						"[concat('Microsoft.Sql/servers/', variables('defaultSqlServerName'), '/databases/',variables('defaultSqlDatabaseName'),'/auditingPolicies/Default')]"
 					  ],
-					  "properties": {
-						  "state": "Enabled",
-						  "disabledAlerts": "",
-						  "emailAddresses": "",
-						  "emailAccountAdmins": "true"
-					  }
+            "properties": {
+              "state": "Enabled",
+              "disabledAlerts": "",
+              "emailAddresses": "",
+              "emailAccountAdmins": "true",
+              "storageEndpoint": "[concat('https://',variables('defaultStorageAccountName'), '.blob.core.windows.net/')]",
+              "storageAccountAccessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('defaultStorageAccountName')), '2015-05-01-preview').key1]"
+            }
 					}]
 				}
 			]

