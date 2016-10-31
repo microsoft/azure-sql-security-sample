@@ -88,7 +88,7 @@ Note on Passwords: Please use only characters and numbers [a-z A-Z 0-9]. Because
 #### Set up and Test Auditing & Threat Detection 
 
 + Auditing and Threat Detection should have been turned on during deployment 
-+ You can verify this in the [Azure Portal](portal.azure.com) by viewing the Database Settings (under **Auditing & Threat Detection**)
++ You can verify this in the [Azure Portal](https://portal.azure.com) by viewing the Database Settings (under **Auditing & Threat Detection**)
 	- Auditing should be 'ON'
 	- Threat Detection should be 'ON'
 	- For shared accounts, unselect the **Email Service and Co-Administrators** box and place your own email address in the box. 
@@ -97,7 +97,7 @@ Note on Passwords: Please use only characters and numbers [a-z A-Z 0-9]. Because
 	- We left the box at the top of the page vulnerable on purpose, but you ought to take precautions to prevent attacks on your apps. 
 	- Here's a simple injection that just reorders the results. (Simply copy the following code and paste it into the textbox at the top of the patients page)
 	```SQL 
-	` ORDER BY SSN -- 
+	' ORDER BY SSN -- 
 	```
 	- Worth saying again: **You _must_ protect against SQL Injection in your app code.** [Learn more about SQL Injection and protecting against it from OWASP.](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet) 
 	- Note: This injection will cause an error instead of reordering results IF Always Encrypted is enabled. 
