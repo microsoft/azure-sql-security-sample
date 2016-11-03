@@ -177,7 +177,7 @@
               "state": "Enabled",
               "disabledAlerts": "",
               "emailAddresses": "",
-              "emailAccountAdmins": "true",
+              "emailAccountAdmins": "Enabled",
               "storageEndpoint": "[concat('https://',variables('defaultStorageAccountName'), '.blob.core.windows.net/')]",
               "storageAccountAccessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('defaultStorageAccountName')), '2015-05-01-preview').key1]"
             }
