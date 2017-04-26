@@ -147,10 +147,10 @@ We had to prepare our application to authenticate against our Key Vault- this co
 
 ### Row Level Security (RLS) 
 
-####Login to the application 
+#### Login to the application 
 Sign in using (Rachel@contoso.com/Password!1) or (alice@contoso.com/Password!1)
 
-####Enable Row Level Security (RLS) 
+#### Enable Row Level Security (RLS) 
 + Connect to your deployed database using SSMS: [Instructions](https://azure.microsoft.com/en-us/documentation/articles/sql-database-connect-query-ssms/)
 + Open Enable-RLS.sql ( [Find it here](Security%20Demo%20Queries/Enable-RLS.sql))
 + Execute the commands 
@@ -158,7 +158,7 @@ Sign in using (Rachel@contoso.com/Password!1) or (alice@contoso.com/Password!1)
 
 #### How did that work? 
 
-#####The application leverages an Entity Framework feature called **interceptors** 
+##### The application leverages an Entity Framework feature called **interceptors** 
 Specifically, we used a `DbConnectionInterceptor`. The `Opened()` function is called whenever Entity Framework opens a connection and we set SESSION_CONTEXT with the current application `UserId` there. 
 
 ##### Predicate functions
