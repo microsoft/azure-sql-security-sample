@@ -1,4 +1,4 @@
-#Contoso Clinic Demo Application 
+# Contoso Clinic Demo Application 
 
 Sample application with database that showcases security features of Azure SQL DB (V12). 
 
@@ -7,76 +7,76 @@ Sample application with database that showcases security features of Azure SQL D
 - **Programming Language:** .NET C#, T-SQL
 - **Authors:** Daniel Rediske [daredis-msft]
 
-##Contents
-1. [Prerequisites] (#prerequisites) 
-2. [Estimated Cost of Deployed Resources] (#estimated-cost-of-deployed-resources)
-3. [Setup] (#setup) 
+## Contents
+1. [Prerequisites](#prerequisites) 
+2. [Estimated Cost of Deployed Resources](#estimated-cost-of-deployed-resources)
+3. [Setup](#setup) 
 	* Generate Application ID and Secret
 	* Retrieve TenantID
 	* Retrieve User and Application ObjectID
 	* Deploy to Azure
-4. [Azure SQL Security Features] (#azure-sql-security-features) 
+4. [Azure SQL Security Features](#azure-sql-security-features) 
 	* Auditing & Threat Detection
 	* Always Encrypted 
 	* Row Level Security 
 	* Dynamic Data Masking
-5.  [Application Notes/Disclaimer] (#application-notes)
+5.  [Application Notes/Disclaimer](#application-notes)
 
 
 
-##Prerequisites
+## Prerequisites
 + Azure Subscription with resource creation permissions
 + Subscription associated with an Azure Active Directory 
-+ [Powershell with AzureRM and Azure Modules] (https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/)
++ [Powershell with AzureRM and Azure Modules](https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/)
 
-##Estimated Cost of Deployed Resources
+## Estimated Cost of Deployed Resources
 The following table is an estimation of the cost of deploying the Demo as of 5/9/2016. 
 
  Resource | Cost/Month | Cost/Hr 
  --- | --- | ---  
 [S1 SQL Database ](https://azure.microsoft.com/en-us/pricing/details/sql-database/) |  $30  | $0.04
-[B1 App Service Plan] (https://azure.microsoft.com/en-us/pricing/details/app-service/) | $55.80  | $0.075
-[Storage Plan] (https://azure.microsoft.com/en-us/pricing/details/storage/) | ~$0 | $0.0036/transaction
-[Azure Key Vault] (https://azure.microsoft.com/en-us/pricing/details/key-vault/)| ~$0| $0.03/10k operations 
+[B1 App Service Plan](https://azure.microsoft.com/en-us/pricing/details/app-service/) | $55.80  | $0.075
+[Storage Plan](https://azure.microsoft.com/en-us/pricing/details/storage/) | ~$0 | $0.0036/transaction
+[Azure Key Vault](https://azure.microsoft.com/en-us/pricing/details/key-vault/)| ~$0| $0.03/10k operations 
 **Monthly Total** | $85.80/mo | ~$0.115/hr
 
-##Setup
-###Generate Application ID and Secret
-In order to allow your client application to access and use the keys in your Azure Key Vault, we need to provision an application in Azure Active Directory. This will create a Client ID and Secret that your app will use to authenticate to the Azure Key Vault. To do this, head to the [Classic Azure Portal] (https://manage.windowsazure.com/) and log in.
+## Setup
+### Generate Application ID and Secret
+In order to allow your client application to access and use the keys in your Azure Key Vault, we need to provision an application in Azure Active Directory. This will create a Client ID and Secret that your app will use to authenticate to the Azure Key Vault. To do this, head to the [Classic Azure Portal](https://manage.windowsazure.com/) and log in.
 
-Select &ldquo;Active Directory&rdquo; in the left sidebar, choose the Active Directory you wish to use (or create a new one if it doesn&rsquo;t exist), then click &ldquo;Applications&rdquo;. If you choose a directory other than your default, you will need to refer to the steps to change the directory associated with your account, [which can be found here] (http://rickrainey.com/windows-azure-how-tos/how-to-change-the-directory-associated-with-your-windows-azure-subscription/). 
+Select &ldquo;Active Directory&rdquo; in the left sidebar, choose the Active Directory you wish to use (or create a new one if it doesn&rsquo;t exist), then click &ldquo;Applications&rdquo;. If you choose a directory other than your default, you will need to refer to the steps to change the directory associated with your account, [which can be found here](http://rickrainey.com/windows-azure-how-tos/how-to-change-the-directory-associated-with-your-windows-azure-subscription/). 
 
 Add a new application by filling out the modal window that appears.
 
 Enter a name, select &ldquo;Web Application&rdquo; as the type, and enter any URL for the Sign-On URL and App ID URI.&nbsp; These must include &ldquo;http://&rdquo;, but do not need to be real pages for the purposes of this demo.&nbsp; 
 
 Go to the &ldquo;Configure&rdquo; tab and generate a new client key (also called a &ldquo;secret&rdquo;) by selecting a duration from the dropdown, then saving the configuration.&nbsp; <strong>Copy the client ID and secret out to a text file</strong>, as they will be used in deployment and in enabling the Always Encrypted functionality.
-###Retrieve TenantID 
+### Retrieve TenantID 
 
 In order to deploy an Azure Key Vault for use with the Always Encrypted functionality of the demo, you will need to provide your tenantID during the deployment process. This can be copied from Powershell in the response to the `Login-AzureRmAccount` command. After the deployment step, this information is not saved by the application. 
 
-###Retrieve User and Application ObjectID
+### Retrieve User and Application ObjectID
 
 In order to create access permissions to the Azure Key Vault during deployment, you will need to collect both your user ObjectID and the Application ObjectID. 
 
 + Log into your Azure account with powershell using the cmdlet `Login-AzureRmAccount`, and copy down the TenantID returned. 
 
-![Login Example] (/Img/LoginExample.png)
+![Login Example](/Img/LoginExample.png)
 
 
 + Run the command: 
 `Get-AzureRMAduser -UserPrincipalName <AccountName>` 
 and copy the ObjectID returned. This is your UserObjectID. 
 
-![User Object ID Example] (/Img/rmaduser.png)
+![User Object ID Example](/Img/rmaduser.png)
 
 + Run the command: 
 `Get-AzureRmADServicePrincipal -ServicePrincipalName <ClientID from AAD application step>` 
 and copy the ObjectID returned. This is your ApplicationObjectId.
 
-![Service Principal example] (/Img/RMADSP.png)
+![Service Principal example](/Img/RMADSP.png)
 
-###Deploy to Azure 
+### Deploy to Azure 
 Click the Deploy to Azure Button and fill out the fields to deploy the demo to your Azure Subscription.
 
 Note on Passwords: Please use only characters and numbers [a-z A-Z 0-9]. Because of certain implementation decisions made in development of this demo, other characters *may cause deployment issues*.  
@@ -109,7 +109,7 @@ Threat Detection is designed to detect suspicious database activity- which may i
 
 ### Always Encrypted 
 
-####Enable Always Encrypted
+#### Enable Always Encrypted
 + Connect to your deployed database using SSMS: 
 	- The server you created will be visible in your [azure portal](https://portal.azure.com), it will begin with the string "contososerv"
 	- Connect using the Administrator Login (Default was adminLogin) and the password you defined during setup 
@@ -132,25 +132,25 @@ Threat Detection is designed to detect suspicious database activity- which may i
 + Navigate to or refresh the /patients page
 	- Notice that the application still works and the encryption does not hinder the presentation of the data
 	
-####How did that work? 
+#### How did that work? 
 
 ##### Azure Key Vault Creation and Permissions  
 During the pre-deployment steps, you collected information which enabled the deployment to create an Azure Key Vault and the required permissions for both you (the user) and the Application Active Directory registration we created. During those steps, the Azure Active Directory registration for the application was necessary to enable key vault connectivity, because the application needs access to the key to enable the driver to transparently handle the decryption of the columns we encrypted. 
 
 During the creation, we gave the user `create, list, wrapKey, unwrapKey, sign, verify` permissions in order to facilitate your Key Vault management; the application needs `get, wrapKey, unwrapKey, sign, verify`. As a best practice, you should *always follow the principle of least privelege*. For documentation on Key Vault Permissions, see [About Keys and Secrets](https://msdn.microsoft.com/en-us/library/azure/dn903623.aspx#BKMK_KeyAccessControl). 
 
-This is the equivalent of creating a [key vault] (https://blogs.technet.microsoft.com/kv/2015/06/02/azure-key-vault-step-by-step) and permissions via Powershell- see the section/cmdlets under "Create and Configure a key vault". 
+This is the equivalent of creating a [key vault](https://blogs.technet.microsoft.com/kv/2015/06/02/azure-key-vault-step-by-step) and permissions via Powershell- see the section/cmdlets under "Create and Configure a key vault". 
 ##### Connection String
 Our connection string for our application contains `Column Encryption Setting=Enabled` which allows the driver to handle the necessary overhead to decrypt the newly encrypted data without code changes. Ordinarily, you would need to change the connection string- but in this demo, we preemptively included this within the connection string with the intent that you enable this functionality. Don't forget this for your app if you intend to use Always Encrypted functonality. 
 ##### Application Code Changes
-We had to prepare our application to authenticate against our Key Vault- this code is discussed in more detail in this [Blog Post] (https://blogs.msdn.microsoft.com/sqlsecurity/2015/11/10/using-the-azure-key-vault-key-store-provider-for-always-encrypted/). The code changes referenced there are in our file *Startup.cs*, which can be found [here](ContosoClinicProject/ContosoClinic/Startup.cs). 
+We had to prepare our application to authenticate against our Key Vault- this code is discussed in more detail in this [Blog Post](https://blogs.msdn.microsoft.com/sqlsecurity/2015/11/10/using-the-azure-key-vault-key-store-provider-for-always-encrypted/). The code changes referenced there are in our file *Startup.cs*, which can be found [here](ContosoClinicProject/ContosoClinic/Startup.cs). 
 
 ### Row Level Security (RLS) 
 
-####Login to the application 
+#### Login to the application 
 Sign in using (Rachel@contoso.com/Password!1) or (alice@contoso.com/Password!1)
 
-####Enable Row Level Security (RLS) 
+#### Enable Row Level Security (RLS) 
 + Connect to your deployed database using SSMS: [Instructions](https://azure.microsoft.com/en-us/documentation/articles/sql-database-connect-query-ssms/)
 + Open Enable-RLS.sql ( [Find it here](Security%20Demo%20Queries/Enable-RLS.sql))
 + Execute the commands 
@@ -158,7 +158,7 @@ Sign in using (Rachel@contoso.com/Password!1) or (alice@contoso.com/Password!1)
 
 #### How did that work? 
 
-#####The application leverages an Entity Framework feature called **interceptors** 
+##### The application leverages an Entity Framework feature called **interceptors** 
 Specifically, we used a `DbConnectionInterceptor`. The `Opened()` function is called whenever Entity Framework opens a connection and we set SESSION_CONTEXT with the current application `UserId` there. 
 
 ##### Predicate functions
